@@ -17,6 +17,7 @@ from config import scanPlanner
 
 class DataCleaner:
     def __init__(self):
+        # Equipment scanning range
         self.maxRange = scanPlanner["maxRange"]
         self.minRange = scanPlanner["minRange"]
 
@@ -32,7 +33,7 @@ class DataCleaner:
                 wall_points_y, wall_points_x = wall_points # Key step
                 dist = math.sqrt(pow((x_point - wall_points_x),2) + pow((y_point - wall_points_y),2))
 
-                # if dist <= 2000.0 and dist >=24.0 : #trimble range 0.6m - 80m, 1 pixel = 0.025m, take 60m = 60/2400px (~2000px) for testing
+                #trimble range 0.6m - 80m, 1 pixel = 0.025m, take 60m = 60/2400px (~2000px) for testing
                 if dist <= self.maxRange and dist >=self.minRange:
                     scanned_walls.append(wall_points)
                     eligible_candidates[candidate] = scanned_walls
