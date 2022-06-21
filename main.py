@@ -1,13 +1,12 @@
-from imageProcessor import imageProcessor
-from scanPlanner import DataCleaner, Clustering
+import cv2
+import numpy as np
 
-class scanMain:
-    def __init__(self):
-        self.imageProcessor = imageProcessor.imageProcessor()
-        self.DataCleaner = DataCleaner.DataCleaner()
-        self.Clustering = Clustering.Clustering()
+from src.scanPlanner.imageProcessor import imageProcessor
+from src.scanPlanner.extractCoord import DataCleaner, Clustering
 
-    def main(self):
+
+
+
         
 
 
