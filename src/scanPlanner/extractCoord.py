@@ -13,10 +13,10 @@ from sklearn.preprocessing import StandardScaler
 from yellowbrick.cluster import KElbowVisualizer
 from sklearn.cluster import DBSCAN
 from functools import reduce
-from config import scanPlanner
+from common.config import scanPlanner
 
 class DataCleaner:
-    def __init__(self):
+    def __init__(self, cleaner):
         # Equipment scanning range
         self.maxRange = scanPlanner["maxRange"]
         self.minRange = scanPlanner["minRange"]

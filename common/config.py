@@ -10,7 +10,7 @@ imageProcessor = {
     "y_threshold": 55, # number of y-axis pixels to close up the gap between 2 points on y-axis
 }
 
-scanPlanner = {
+extractCoord = {
     "DBSCAN": True, # Activate DBSCAN clustering module
     "KMeans": False, # Activate KMeans clustering module
     "maxRange": 2000, # Max laser range

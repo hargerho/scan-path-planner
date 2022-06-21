@@ -9,10 +9,10 @@ import numpy as np
 import pandas as pd
 import math
 
-from config import imageProcessor
+from common.config import imageProcessor
 
 class ImageProcessor:
-    def __init__(self):
+    def __init__(self, processor):
         self.IMAGE_NAME = imageProcessor["image"]
 
         # minimum size of particles we want to keep (number of pixels)
