@@ -1,6 +1,9 @@
 from concurrent.futures import process
 from common import config
+
+# Importing the module runners
 from src.runner import scanRunner as scanRunner
+# from src.runner import pathRunner as pathRunner
 
 ### Loading up the configs
 def imageProcessor_loader():
