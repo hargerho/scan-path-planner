@@ -9,23 +9,21 @@ import numpy as np
 import pandas as pd
 import math
 
-from common.config import imageProcessor
-
 class ImageProcessor:
     def __init__(self, processor):
-        self.IMAGE_NAME = imageProcessor["image"]
+        self.IMAGE_NAME = processor["image"]
 
         # minimum size of particles we want to keep (number of pixels)
         #here, it's a fixed value, but you can set it as you want, eg the mean of the sizes or whatever
         # 0 yield best results
-        self.min_pixel_size = imageProcessor["min_pixel_size"]
-        self.NOISE_REMOVAL_THRESHOLD = imageProcessor["noise_removal_threshold"]
-        self.CORNERS_THRESHOLD = imageProcessor["corners_threshold"]
-        self.ROOM_CLOSING_MAX_LENGTH = imageProcessor["room_closing_max_length"]
-        self.GAP_IN_WALL_THRESHOLD = imageProcessor["gap_in_wall_threshold"]
-        self.BINARY_THRESHOLD = imageProcessor["binary_threshold"]
-        self.X_THRESHOLD = imageProcessor["x_threshold"]
-        self.Y_THRESHOLD = imageProcessor["y_threshold"]
+        self.min_pixel_size = processor["min_pixel_size"]
+        self.NOISE_REMOVAL_THRESHOLD = processor["noise_removal_threshold"]
+        self.CORNERS_THRESHOLD = processor["corners_threshold"]
+        self.ROOM_CLOSING_MAX_LENGTH = processor["room_closing_max_length"]
+        self.GAP_IN_WALL_THRESHOLD = processor["gap_in_wall_threshold"]
+        self.BINARY_THRESHOLD = processor["binary_threshold"]
+        self.X_THRESHOLD = processor["x_threshold"]
+        self.Y_THRESHOLD = processor["y_threshold"]
 
     def remove_annotation(self):
         '''
