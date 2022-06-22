@@ -13,13 +13,13 @@ from sklearn.preprocessing import StandardScaler
 from yellowbrick.cluster import KElbowVisualizer
 from sklearn.cluster import DBSCAN
 from functools import reduce
-from common.config import scanPlanner
 
 class DataCleaner:
     def __init__(self, cleaner):
+
         # Equipment scanning range
-        self.maxRange = scanPlanner["maxRange"]
-        self.minRange = scanPlanner["minRange"]
+        self.maxRange = cleaner["maxRange"]
+        self.minRange = cleaner["minRange"]
 
     # Calculating distance of scan_candidates to wall_points
     def distanceCalculator(self, scan_candidates, wall):
@@ -60,9 +60,11 @@ class DataCleaner:
         return new_dict
     
 class Clustering:
-    def __init__(self):
-        self.DBSCAN = scanPlanner["DBSCAN"]
-        self.Kmeans = scanPlanner["Kmeans"]
+    def __init__(self, cleaner):
+
+        # Selecting clusters
+        self.DBSCAN = cleaner["DBSCAN"]
+        self.Kmeans = cleaner["Kmeans"]
 
     def dbsClustering(self, new_dict):
 
