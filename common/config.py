@@ -16,3 +16,15 @@ extractCoord = {
     "maxRange": 2000, # Max laser range
     "minRange": 24, # Min laser range
 }
+
+pathPlanner = {
+    "AStar": False,
+    "RRT": True
+}
+
+visual = {
+    "output": 'maps/plannedPath.jpg', # Output file path
+    "thickness": 1, # Thickness of the FOV line
+    "FOVColor": [0, 255, 0], # Colouring the scanned FOV
+    "pointRadius": 2, # Size of the drawn scan candidates
+}
