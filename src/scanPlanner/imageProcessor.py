@@ -12,7 +12,7 @@ import math
 class ImageProcessor:
     def __init__(self, processor):
         self.IMAGE_NAME = processor["image"]
-
+        
         # minimum size of particles we want to keep (number of pixels)
         #here, it's a fixed value, but you can set it as you want, eg the mean of the sizes or whatever
         # 0 yield best results
