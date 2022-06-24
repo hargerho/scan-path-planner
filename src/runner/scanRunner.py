@@ -14,3 +14,8 @@ class ScanRunner:
         # Initalise the modules
         self.imageProcessor = imageProcessor(processor=processor)
         self.DataCleaner = DataCleaner(cleaner=cleaner)
+
+    def extracCoord(self):
+        self.DataCleaner.distanceCalculator
+
+    
