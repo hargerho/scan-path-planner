@@ -21,6 +21,9 @@ class DataCleaner:
         self.maxRange = cleaner["maxRange"]
         self.minRange = cleaner["minRange"]
 
+        # initialte imageProcessor
+        #self.imageProcessor = xxx
+
     # Calculating distance of scan_candidates to wall_points
     def distanceCalculator(self, scan_candidates, wall):
         eligible_candidates = {}
