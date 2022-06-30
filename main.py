@@ -12,6 +12,9 @@ def imageProcessor_loader():
 def extractCoord_loader():
     return config.extractCoord
 
+def path_loader():
+    return config.pathPlanner
+
 # Visualization functions
 def visualize(img, scanning_dict):
     # Drawing out the FOV of the finalized scanned coordinates
@@ -50,9 +53,10 @@ def visualize(img, scanning_dict):
 def main():
     pathPlanning = pathRunner(
         processor=imageProcessor_loader(),
-        cleaner=extractCoord_loader())
+        cleaner=extractCoord_loader(),
+        path =path_loader())
 
-    # TODO run pathPlanner
+    # TODO run scanPlanner
 
     visualize(img=img, scanning_dict=scanning_dict)
 
