@@ -19,7 +19,9 @@ extractCoord = {
 
 pathPlanner = {
     "AStar": False,
-    "RRT": True
+    "RRT": True,
+    "RRTstepsize": 15,
+    "Salesman": True
 }
 
 visual = {
