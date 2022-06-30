@@ -7,7 +7,6 @@ web: nimrobotics.github.io
 
 """
 ### Preliminary edit
-from xml.dom.minicompat import NodeList
 import cv2
 import numpy as np
 import math
@@ -31,11 +30,8 @@ def collision(x1,y1,x2,y2):
         x = list(np.arange(x1,x2,(x2-x1)/100))
         y = list(((y2-y1)/(x2-x1))*(x-x1) + y1)
     except Warning as e:
-            # print("There was an error here", e)
             pass
-    # print("collision",x,y)
     for i in range(len(x)):
-        # print(int(x[i]),int(y[i]))
         color.append(img[int(y[i]),int(x[i])])
     if (0 in color):
         return True #collision
@@ -47,15 +43,10 @@ def check_collision(x1,y1,x2,y2):
     _,theta = dist_and_angle(x2,y2,x1,y1)
     x=x2 + stepSize*np.cos(theta)
     y=y2 + stepSize*np.sin(theta)
-    # print(x2,y2,x1,y1)
-    # print("theta",theta)
-    # print("check_collision",x,y)
 
-    # TODO: trim the branch if its going out of image area
-    # print("Image shape",img.shape)
     hy,hx=img.shape
     if y<0 or y>hy or x<0 or x>hx:
-        # print("Point out of image bound")
+        # Point out of image bound
         directCon = False
         nodeCon = False
     else:
@@ -73,7 +64,7 @@ def check_collision(x1,y1,x2,y2):
 
     return(x,y,directCon,nodeCon)
 
-# return dist and angle b/w new point and nearest node
+# return dist and angle of new point and nearest node
 def dist_and_angle(x1,y1,x2,y2):
     dist = math.sqrt( ((x1-x2)**2)+((y1-y2)**2) )
     angle = math.atan2(y2-y1, x2-x1)
@@ -95,12 +86,10 @@ def rnd_point(h,l):
 
 
 def RRT(img, img2, start, end, stepSize):
-    h,l= img.shape # dim of the loaded image
-    # print(img.shape) # (384, 683)
-    # print(h,l)
+    h,l= img.shape 
 
     # insert the starting point in the node class
-    # node_list = [0] # list to store all the node points         
+    # node_list = [0] list to store all the node points         
     node_list[0] = Nodes(start[0],start[1])
     node_list[0].parent_x.append(start[0])
     node_list[0].parent_y.append(start[1])
@@ -113,19 +102,15 @@ def RRT(img, img2, start, end, stepSize):
     pathFound = False
     while pathFound==False:
         nx,ny = rnd_point(h,l)
-        # print("Random points:",nx,ny)
 
         nearest_ind = nearest_node(nx,ny)
         nearest_x = node_list[nearest_ind].x
         nearest_y = node_list[nearest_ind].y
-        # print("Nearest node coordinates:",nearest_x,nearest_y)
 
         #check direct connection
         tx,ty,directCon,nodeCon = check_collision(nx,ny,nearest_x,nearest_y)
-        # print("Check collision:",tx,ty,directCon,nodeCon)
 
         if directCon and nodeCon:
-            # print("Node can connect directly with end")
             node_list.append(i)
             node_list[i] = Nodes(tx,ty)
             node_list[i].parent_x = node_list[nearest_ind].parent_x.copy()
@@ -137,8 +122,7 @@ def RRT(img, img2, start, end, stepSize):
             cv2.line(img2, (int(tx),int(ty)), (int(node_list[nearest_ind].x),int(node_list[nearest_ind].y)), (0,255,0), thickness=1, lineType=8)
             cv2.line(img2, (int(tx),int(ty)), (end[0],end[1]), (255,0,0), thickness=2, lineType=8)
 
-            # print("Path has been found")
-            #print("parent_x",node_list[i].parent_x)
+            # Path   found
             for j in range(len(node_list[i].parent_x)-1):
                 cv2.line(img2, (int(node_list[i].parent_x[j]),int(node_list[i].parent_y[j])), (int(node_list[i].parent_x[j+1]),int(node_list[i].parent_y[j+1])), (255,0,0), thickness=2, lineType=8)
             cv2.waitKey(1)
@@ -147,16 +131,15 @@ def RRT(img, img2, start, end, stepSize):
             break
 
         elif nodeCon:
-            # print("Nodes connected")
+            # Nodes connected
             node_list.append(i)
             node_list[i] = Nodes(tx,ty)
             node_list[i].parent_x = node_list[nearest_ind].parent_x.copy()
             node_list[i].parent_y = node_list[nearest_ind].parent_y.copy()
-            # print(i)
-            # print(node_list[nearest_ind].parent_y)
             node_list[i].parent_x.append(tx)
             node_list[i].parent_y.append(ty)
             i=i+1
+
             # display
             cv2.circle(img2, (int(tx),int(ty)), 2,(0,0,255),thickness=3, lineType=8)
             cv2.line(img2, (int(tx),int(ty)), (int(node_list[nearest_ind].x),int(node_list[nearest_ind].y)), (0,255,0), thickness=1, lineType=8)
@@ -167,7 +150,6 @@ def RRT(img, img2, start, end, stepSize):
             continue
 
         else:
-            # print("No direct con. and no node con. :( Generating new rnd numbers")
             continue
     return len(node_list), count
         
@@ -212,6 +194,7 @@ if __name__ == '__main__':
         # run the RRT algorithm 
         counter, count = RRT(img, img2, start, end, stepSize)
         numNodes += counter
+        
     stop_time = timeit.default_timer()
     print("Time Taken ", round((stop_time - start_time), 4))
     print("counter ", numNodes)
