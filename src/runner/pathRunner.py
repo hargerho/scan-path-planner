@@ -11,7 +11,7 @@ import pandas as pd
 from src.runner.scanRunner import ScanRunner
 
 # Import the path planning modules
-from src.pathPlanner.RRT import RRT
+from src.pathPlanner.RRT import RRTRun
 
 
 class pathRunner:
@@ -27,15 +27,20 @@ class pathRunner:
         # Initialize scanRunner
         self.ScanRunner = ScanRunner(processor=processor, cleaner=cleaner)
 
-        # Initialize the path planning module
-        self.RRT = RRT(img, coordSequence, self.RRTstepsize)
+        # Get the scanning list by executing the scanPlanner algo
+        # self.scanningList = scanplanner()
 
-    def getSequence(self, scanningList):
-        n = len(self.scanning_list)
+        self.coordSequence = self.getSequence(scanningList=self.scanningList)
+
+        # Initialize the path planning module
+        self.RRT = RRTRun.RRTRunner(image=self.img, coordSequence=self.coordSequence, stepSize = self.RRTstepsize)
+
+    def getSequence(self, scanning_list):
+        n = len(scanning_list)
         G = np.empty((n, n), int)
-        for i in range(len(self.scanning_list)):
-            for j in range(len(self.scanning_list)):
-                dist = math.sqrt(pow((self.scanning_list[i][0] - self.scanning_list[j][0]),2) + pow((self.scanning_list[i][1] - self.scanning_list[j][1]),2))
+        for i in range(len(scanning_list)):
+            for j in range(len(scanning_list)):
+                dist = math.sqrt(pow((scanning_list[i][0] - scanning_list[j][0]),2) + pow((scanning_list[i][1] - scanning_list[j][1]),2))
                 G[i][j] = dist
 
         r = range(len(G))
@@ -44,7 +49,7 @@ class pathRunner:
         coordSequence = []
 
         for i in pathSequence[0]:
-            coordSequence.append(self.scanning_list[i])
+            coordSequence.append(scanning_list[i])
 
         # Reversing the coordinates x,y position in tuple
         coordSequence = list(map(lambda tup: tup[::-1], coordSequence))
