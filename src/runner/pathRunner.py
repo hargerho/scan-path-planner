@@ -33,7 +33,7 @@ class pathRunner:
         self.coordSequence = self.getSequence(scanningList=self.scanningList)
 
         # Initialize the path planning module
-        self.RRT = RRTRun.RRTRunner(image=self.img, coordSequence=self.coordSequence, stepSize = self.RRTstepsize)
+        self.RRT = RRTRun(image=self.img, coordSequence=self.coordSequence, stepSize = self.RRTstepsize)
 
     def getSequence(self, scanning_list):
         n = len(scanning_list)
@@ -55,4 +55,14 @@ class pathRunner:
         coordSequence = list(map(lambda tup: tup[::-1], coordSequence))
 
         return coordSequence
+
+    def pathRun(self):
+        self.scanningList = self.ScanRunner.ScanRun()
+        self.getSequence(scanning_list=self.scanningList)
+
+        # module toggle
+        if self.RRT is True:
+            # Run the RRT module
+            self.numNode, self.count, self.nodeList = self.RRT.RRTRunner() #error here?
+
 
