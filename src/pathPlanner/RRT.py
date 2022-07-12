@@ -155,7 +155,7 @@ class RRTRun:
                 continue
         return len(node_list), count, node_list
     
-    def RRTRunner(self):
+    def RRTRunner(self, img, imgColor, start, end):
         # remove previously stored data
         try:
             os.system("rm -rf media")
