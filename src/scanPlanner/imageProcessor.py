@@ -141,7 +141,7 @@ class ImageProcessor:
                 
         return img, rooms
     
-    def extractCoordinates(self, img, rooms):
+    def roomCoordinates(self, img, rooms):
         # Reformat room_coord_list to store rgb of room and their coordinates
         # Filter out all black pixels
         # Source: https://stackoverflow.com/questions/27026866/convert-an-image-to-2d-array-in-python
@@ -229,14 +229,14 @@ class ImageProcessor:
             return rooms_coord, wall_dict
 
 
-# Testing this module
-if __name__ == "__main__":
-    processor = ImageProcessor()
-    cleanedImg = processor.remove_annotation()
-    coloredImg, rooms = processor.colour_rooms(cleanedImg)
-    rooms_coord, wall_dict = processor.extractCoordinates(coloredImg,rooms)
-    cv2.imshow("out", coloredImg)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+# # Testing this module
+# if __name__ == "__main__":
+#     processor = ImageProcessor()
+#     cleanedImg = processor.remove_annotation()
+#     coloredImg, rooms = processor.colour_rooms(cleanedImg)
+#     rooms_coord, wall_dict = processor.roomCoordinates(coloredImg,rooms)
+#     cv2.imshow("out", coloredImg)
+#     cv2.waitKey(0)
+#     cv2.destroyAllWindows()
 
     
