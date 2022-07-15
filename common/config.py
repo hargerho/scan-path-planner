@@ -1,3 +1,4 @@
+# Processor
 imageProcessor = {
     "image": 'maps/jpegfloorplan.jpg',
     "min_pixel_size": 0, # minimum size of particles we want to keep
@@ -10,6 +11,7 @@ imageProcessor = {
     "y_threshold": 55, # number of y-axis pixels to close up the gap between 2 points on y-axis
 }
 
+#Cleaner
 extractCoord = {
     "DBSCAN": True, # Activate DBSCAN clustering module
     "KMeans": False, # Activate KMeans clustering module
@@ -17,6 +19,7 @@ extractCoord = {
     "minRange": 24, # Min laser range
 }
 
+# Path
 pathPlanner = {
     "AStar": False,
     "RRT": True,
