@@ -18,8 +18,8 @@ class pathRunner:
     def __init__(self, processor, cleaner, path):
         
         # Initialize path planner variables
-        self.AStar = path["AStar"]
-        self.RRT = path["RRT"]
+        self.AStar_flag = path["AStar"]
+        self.RRT_flag = path["RRT"]
         self.RRTstepsize = path["RRTstepsize"]
         self.salesman = path["Salesman"]
         # self.img = read in the cleaned image from OS TODO
@@ -29,8 +29,6 @@ class pathRunner:
 
         # Get the scanning list by executing the scanPlanner algo
         # self.scanningList = scanplanner()
-
-        self.coordSequence = self.getSequence(scanningList=self.scanningList)
 
         # Initialize the path planning module
         self.RRT = RRTRun(image=self.img, coordSequence=self.coordSequence, stepSize = self.RRTstepsize)
@@ -57,12 +55,12 @@ class pathRunner:
         return coordSequence
 
     def pathRun(self):
-        self.scanningList = self.ScanRunner.ScanRun()
-        self.getSequence(scanning_list=self.scanningList)
+        self.scanningList = self.ScanRunner.scanRun()
+        coordSequence = self.getSequence(scanning_list=self.scanningList)
 
         # module toggle
-        if self.RRT is True:
+        if self.RRT_flag is True:
             # Run the RRT module
-            self.numNode, self.count, self.nodeList = self.RRT.RRTRunner() #error here?
+            self.numNode, self.count, self.nodeList = self.RRT.RRTRunner(coordSequence=coordSequence)
 
 
