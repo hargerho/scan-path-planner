@@ -155,7 +155,7 @@ class RRTRun:
                 continue
         return len(node_list), count, node_list
     
-    def RRTRunner(self, img, imgColor, start, end):
+    def RRTRunner(self, coordSequence):
         # remove previously stored data
         try:
             os.system("rm -rf media")
@@ -170,9 +170,9 @@ class RRTRun:
         # load colored image
         imgColor = cv2.imread(self.IMAGE)
 
-        for i in range(len(self.coordSequence) - 1):
-            start = self.coordSequence[i]
-            end = self.coordSequence[i+1]
+        for i in range(len(coordSequence) - 1):
+            start = coordSequence[i]
+            end = coordSequence[i+1]
 
             counter, count, nodeList = self.RRT(img, imgColor, start, end, self.stepSize)
 
