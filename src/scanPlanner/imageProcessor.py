@@ -12,6 +12,7 @@ import math
 class ImageProcessor:
     def __init__(self, processor):
         self.IMAGE_NAME = processor["image"]
+        self.IMAGE_OUT = processor["image_out"]
         
         # minimum size of particles we want to keep (number of pixels)
         #here, it's a fixed value, but you can set it as you want, eg the mean of the sizes or whatever
@@ -138,6 +139,10 @@ class ImageProcessor:
                     key += 1
             
             img[component] = color
+
+        # Writing the colored-coded rooms
+        cv2.imwrite(self.IMAGE_OUT, img)
+        print("Cleaned image safed")
                 
         return img, rooms
     
