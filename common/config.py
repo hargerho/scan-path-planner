@@ -1,6 +1,7 @@
 # Processor
 imageProcessor = {
     "image": 'maps/jpegfloorplan.jpg',
+    "image_out" 'maps/processed.jpg'
     "min_pixel_size": 0, # minimum size of particles we want to keep
     "noise_removal_threshold": 25, # Minimal area of blobs to be kept
     "corners_threshold": 0.1, # Threshold to allow corners. Higher removes more of the house
@@ -28,7 +29,7 @@ pathPlanner = {
 }
 
 visual = {
-    "output": 'maps/plannedPath.jpg', # Output file path
+    "output": 'maps/visualizedCandidates.jpg', # Output file path
     "thickness": 1, # Thickness of the FOV line
     "FOVColor": [0, 255, 0], # Colouring the scanned FOV
     "pointRadius": 2, # Size of the drawn scan candidates
