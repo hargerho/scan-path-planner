@@ -1,5 +1,6 @@
 import math
 import cv2
+import os.path
 from common import config
 
 # Importing the module runners
@@ -56,15 +57,15 @@ def main():
         cleaner=extractCoord_loader(),
         path =path_loader())
 
-    # TODO run scanPlanner
+    imgPath = 'maps/jpegfloorplan.jpg'
 
-    visualize(img=img, scanning_dict=scanning_dict)
+    # Start running the program
+    scanningDict = pathPlanning.pathRun()
+
+    if os.path.exist('maps/processed.jpg'):
+        visualize(img=imgPath, scanning_dict=scanningDict)
+    else:
+        print("Cleaned image does not exist!")
 
 if __name__ == "__main__":
     main()
-
-# TODO run pathPlanner
-
-# output pathhPlan
-
-# visualise module
