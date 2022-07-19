@@ -62,5 +62,7 @@ class pathRunner:
         if self.RRT_flag is True:
             # Run the RRT module
             self.numNode, self.count, self.nodeList = self.RRT.RRTRunner(coordSequence=coordSequence)
+        
+        return self.scanningList
 
 
