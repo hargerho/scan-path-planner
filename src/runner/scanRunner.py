@@ -28,4 +28,4 @@ class ScanRunner:
 
         self.cleanDict = self.extracCoord(scanCandidates=self.rooms_coord, wall=self.wall_dict)
 
-        return list(self.cleanDict)
+        return self.cleanDict
