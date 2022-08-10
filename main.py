@@ -52,7 +52,7 @@ def visualize(img, scanning_dict):
 
 
 def main():
-    pathPlanning = pathRunner(
+    pathPlanning = pathRunner.pathRunner(
         processor=imageProcessor_loader(),
         cleaner=extractCoord_loader(),
         path =path_loader())

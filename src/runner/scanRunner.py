@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 # Importing the modules
-from scanPlanner.ImageProcessor import ImageProcessor
+from src.scanPlanner.ImageProcessor import ImageProcessor
 from src.scanPlanner.extractCoord import DataCleaner, Clustering
 
 
