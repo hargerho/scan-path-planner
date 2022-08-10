@@ -1,7 +1,7 @@
 # Processor
 imageProcessor = {
-    "image": 'maps/jpegfloorplan.jpg',
-    "image_out" 'maps/processed.jpg'
+    "image": 'maps\jpegfloorplan.jpg',
+    "image_out": 'maps\processed.jpg',
     "min_pixel_size": 0, # minimum size of particles we want to keep
     "noise_removal_threshold": 25, # Minimal area of blobs to be kept
     "corners_threshold": 0.1, # Threshold to allow corners. Higher removes more of the house
