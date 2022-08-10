@@ -22,16 +22,13 @@ class pathRunner:
         self.RRT_flag = path["RRT"]
         self.RRTstepsize = path["RRTstepsize"]
         self.salesman = path["Salesman"]
-        # self.img = read in the cleaned image from OS TODO
+        self.img = cv2.imread(processor["image_out"])
 
         # Initialize scanRunner
         self.ScanRunner = ScanRunner(processor=processor, cleaner=cleaner)
 
-        # Get the scanning list by executing the scanPlanner algo
-        # self.scanningList = scanplanner()
-
         # Initialize the path planning module
-        self.RRT = RRTRun(image=self.img, coordSequence=self.coordSequence, stepSize = self.RRTstepsize)
+        self.RRT = RRTRun(image=self.img, stepSize = self.RRTstepsize)
 
     def getSequence(self, scanning_list):
         n = len(scanning_list)
@@ -55,14 +52,17 @@ class pathRunner:
         return coordSequence
 
     def pathRun(self):
-        self.scanningList = self.ScanRunner.scanRun()
-        coordSequence = self.getSequence(scanning_list=self.scanningList)
+        self.scanningDict = self.ScanRunner.scanRun()
+
+        self.scanningList = list(self.scanningDict)
+
+        self.coordSequence = self.getSequence(scanning_list=self.scanningList)
 
         # module toggle
         if self.RRT_flag is True:
             # Run the RRT module
-            self.numNode, self.count, self.nodeList = self.RRT.RRTRunner(coordSequence=coordSequence)
+            self.numNode, self.count, self.nodeList = self.RRT.RRTRunner(coordSequence=self.coordSequence)
         
-        return self.scanningList
+        return self.scanningDict
 
 
