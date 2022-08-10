@@ -19,9 +19,8 @@ class Nodes:
 
 
 class RRTRun:
-    def __init__(self, image, coordSequence, stepSize):
+    def __init__(self, image, stepSize):
         self.stepSize = stepSize
-        self.coordSequence = coordSequence
         self.IMAGE = image
 
     # check collision
